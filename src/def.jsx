@@ -9,7 +9,9 @@ const def = {
     save: 3,
     saveProfiles: [{name: ''}, {name: '[invul]'}],
     saveProfileIndex: 0,
-    total: 0
+    total: 0,
+    fnp: 4,
+    fnp_active: false
 }
 
 export default def

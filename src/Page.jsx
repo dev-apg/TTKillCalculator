@@ -1,5 +1,6 @@
 import Basic from "./stats/Basic";
 import Multi from "./stats/Multi";
+import FNP from "./stats/FNP"
 
 function Page({ state }) {
   console.log(state.values)
@@ -14,7 +15,9 @@ function Page({ state }) {
     ap,
     save,
     saveProfiles,
-    saveProfileIndex
+    saveProfileIndex,
+    fnp,
+    fnp_active
   } = state.values;
   const { dispatch } = state;
 
@@ -36,11 +39,13 @@ function Page({ state }) {
         profileIndex={saveProfileIndex}
         profileActionType={'update_save_profile'}
       />
-      <Basic
+      <FNP
        title={'FNP'}
-       value={`${bs}+`}
-       actionType={'update_bs'}
+       value={`${fnp}+`}
+       actionType={'update_fnp'}
        dispatch={dispatch}
+       profileActionType={'update_fnp_active'}
+       active={fnp_active}
       />
       <span>Weapon</span>
       <Multi

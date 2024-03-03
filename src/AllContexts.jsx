@@ -37,10 +37,10 @@ function AllContexts({ children }) {
     return failedSaves;
   }
 
-function doWeHaveInvul(saveProfile) {
-  console.log(saveProfile)
-return saveProfile === '[invul]';
-}
+  function doWeHaveInvul(saveProfile) {
+    console.log(saveProfile)
+    return saveProfile === '[invul]';
+  }
 
   function addSusHits(attacks, attackProf) {
     switch (attackProf) {
@@ -102,6 +102,12 @@ return saveProfile === '[invul]';
         let newState = { ...state, bs: newNum }
         return { ...newState, total: total(newState) }
       }
+      case 'update_ap': {
+        let newNum = state.ap + parseInt(action.payload)
+        newNum = boundaryCheck(newNum, -5, 0);
+        let newState = { ...state, ap: newNum }
+        return { ...newState, total: total(newState) }
+      }
       case 'update_strength': {
         let newNum = state.strength + parseInt(action.payload)
         newNum = boundaryCheck(newNum, 1, 10);
@@ -129,6 +135,19 @@ return saveProfile === '[invul]';
         let newState = { ...state, save: newNum };
         return { ...newState, total: total(newState) }
       }
+      case 'update_fnp': {
+        let newIndex = state.fnp + parseInt(action.payload)
+        newIndex = boundaryCheck(newIndex, 4, 6);
+        let newState = { ...state, fnp_index: newIndex }
+        return { ...newState, total: total(newState) }
+      }
+      case 'update_fnp_active': {
+        console.log(action.payload)
+        const active = action.payload ? false : true;
+        let newState = { ...state, fnp_active: active };
+        return { ...newState, total: total(newState) }
+      }
+
       default: {
         throw Error('Unknown action: ' + action.type);
       }
